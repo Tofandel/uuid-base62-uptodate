@@ -1,50 +1,45 @@
 'use strict';
 
 // dependencies
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var baseX = require('base-x');
 var base62 = baseX('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
-// expose node-uuid and baseX for convenience
+// expose uuid and baseX for convenience
 module.exports.uuid = uuid;
 module.exports.baseX = baseX;
-module.exports.customBase = base62;
+module.exports.base62 = base62;
 module.exports.length = 22;
 module.exports.uuidLength = 32;
-
-/**
- * v4
- */
-module.exports.v4 = function v4() {
-  var self = this;
-  var args = Array.prototype.slice.call(arguments);
-
-  if (!args[1]) {
-    // make sure we use a buffer to avoid getting an uuid with dashes
-    args[1] = new Buffer(16);
-  }
-
-  var id = uuid.v4.apply(self, args);
-  return self.encode(id);
-};
 
 
 /**
  * v1
  */
-module.exports.v1 = function v1() {
-  var self = this;
-  var args = Array.prototype.slice.call(arguments);
-
-  if (!args[1]) {
-    // make sure we use a buffer to avoid getting an uuid with dashes
-    args[1] = new Buffer(16);
-  }
-
-  var id = uuid.v1.apply(self, args);
-  return self.encode(id);
+module.exports.v1 = function () {
+  return this.encode(uuid.v1.apply(null, arguments));
 };
 
+/**
+ * v3
+ */
+module.exports.v3 = function () {
+  return this.encode(uuid.v3.apply(null, arguments));
+};
+
+/**
+ * v4
+ */
+module.exports.v4 = function () {
+  return this.encode(uuid.v4.apply(null, arguments));
+};
+
+/**
+ * v5
+ */
+module.exports.v5 = function () {
+  return this.encode(uuid.v5.apply(null, arguments));
+};
 
 /**
  * encode
