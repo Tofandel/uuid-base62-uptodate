@@ -1,12 +1,10 @@
 'use strict';
 
 // dependencies
-var uuid = require('uuid');
 var baseX = require('base-x');
 var base62 = baseX('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 // expose uuid and baseX for convenience
-module.exports.uuid = uuid;
 module.exports.baseX = baseX;
 module.exports.base62 = base62;
 module.exports.length = 22;
@@ -17,28 +15,28 @@ module.exports.uuidLength = 32;
  * v1
  */
 module.exports.v1 = function () {
-  return this.encode(uuid.v1.apply(null, arguments));
+  return this.encode(require('uuid/v1').apply(null, arguments));
 };
 
 /**
  * v3
  */
 module.exports.v3 = function () {
-  return this.encode(uuid.v3.apply(null, arguments));
+  return this.encode(require('uuid/v3').apply(null, arguments));
 };
 
 /**
  * v4
  */
 module.exports.v4 = function () {
-  return this.encode(uuid.v4.apply(null, arguments));
+  return this.encode(require('uuid/v4').apply(null, arguments));
 };
 
 /**
  * v5
  */
 module.exports.v5 = function () {
-  return this.encode(uuid.v5.apply(null, arguments));
+  return this.encode(require('uuid/v5').apply(null, arguments));
 };
 
 /**
