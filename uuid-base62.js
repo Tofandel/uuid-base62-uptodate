@@ -2,12 +2,13 @@
 
 // dependencies
 var baseX = require('base-x');
-var base62 = baseX('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+var base62 = baseX('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+var base16 = baseX('0123456789abcdef');
 
 // expose uuid and baseX for convenience
 module.exports.baseX = baseX;
 module.exports.base62 = base62;
-module.exports.length = 22;
+module.exports.length = 12;
 module.exports.uuidLength = 32;
 
 
@@ -56,6 +57,7 @@ module.exports.encode = function encode(input, options) {
   if (typeof input === 'string') {
     // remove the dashes to save some space
     input = new Buffer(input.replace(/-/g, ''), options.encoding);
+    input = base16.decode(input);
   }
   return ensureLength(options.base.encode(input), options.length);
 };
@@ -74,7 +76,7 @@ module.exports.decode = function decode(b62Str, options) {
   options.base = options.base || this.customBase;
   options.length = options.length || module.exports.uuidLength;
 
-  var res = ensureLength(new Buffer(options.base.decode(b62Str)).toString(options.encoding), options.length);
+  var res = ensureLength(base16.encode(new Buffer(options.base.decode(b62Str)).toString(options.encoding), options.length));
 
   // re-add the dashes so the result looks like an uuid
   var resArray = res.split('');
