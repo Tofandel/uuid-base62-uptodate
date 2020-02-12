@@ -1,7 +1,9 @@
 # Logs
 logs
 *.log
-.idea/
+
+# Phpstorm
+.idea
 
 # Runtime data
 pids
