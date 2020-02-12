@@ -1,7 +1,7 @@
 {
   "name": "@tofandel/uuid-base62",
-  "version": "1.0.2",
-  "description": "Base62 non-sequential url-safe UUID generator (RFC4122)",
+  "version": "1.0.3",
+  "description": "Base62 UUID encoder/decoder/generator (RFC4122 compliant)",
   "main": "uuid-base62.js",
   "keywords": [
     "uuid",

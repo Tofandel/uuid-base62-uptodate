@@ -3,7 +3,11 @@
 [![Dependency Status](https://david-dm.org/tofandel/uuid-base62.svg)](https://david-dm.org/tofandel/uuid-base62)
 
 # uuid-base62
-Base62 non-sequential url-friendly UUID generator (RFC4122)
+Base62 UUID encoder/decoder/generator (RFC4122 compliant)
+
+This is an up to date fork of [dmarcelino/uuid-base62](https://github.com/dmarcelino/uuid-base62)
+
+Original author Dario Marcelino <dario@appscot.com>
 
 ## Overview
 
@@ -11,12 +15,12 @@ uuid-base62 makes it easy to generate short base62 (or any other base) UUIDs. Th
 
 ## Instalation
 ```shell
-npm i uuid-base62 -S
+npm i @tofandel/uuid-base62 -S
 ```
 
 ## Usage
 ```javascript
-var uuidBase62 = require('uuid-base62');
+var uuidBase62 = require('@tofandel/uuid-base62');
 
 var uuid = uuidBase62.v4(); //You can use any uuid method (v1, v3, v4, v5) in accordance to their doc and a base62 encoded uuid will be returned
 // -> 2qY9COoAhfMrsH7mCyh86T
