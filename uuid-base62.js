@@ -2,13 +2,14 @@
 
 // dependencies
 var baseX = require('base-x');
+var Buffer = require('safe-buffer').Buffer;
 var base62 = baseX('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 var base16 = baseX('0123456789abcdef');
 
 // expose uuid and baseX for convenience
 module.exports.baseX = baseX;
-module.exports.base62 = base62;
-module.exports.length = 12;
+module.exports.customBase = base62;
+module.exports.length = 22;
 module.exports.uuidLength = 32;
 
 
@@ -46,18 +47,16 @@ module.exports.v5 = function () {
 module.exports.encode = function encode(input, options) {
   options = options || {};
 
-  // Make compatible with previous API.
-  options.encoding = typeof options === 'string' ?
-    options
-  : options.encoding || 'hex';
-
   options.base = options.base || this.customBase;
   options.length = options.length || module.exports.length;
 
+  if (typeof options.base === "string") {
+    options.base = baseX(options.base);
+  }
+
   if (typeof input === 'string') {
     // remove the dashes to save some space
-    input = new Buffer(input.replace(/-/g, ''), options.encoding);
-    input = base16.decode(input);
+    input = base16.decode(input.replace(/-/g, ''));
   }
   return ensureLength(options.base.encode(input), options.length);
 };
@@ -68,15 +67,20 @@ module.exports.encode = function encode(input, options) {
 module.exports.decode = function decode(b62Str, options) {
   options = options || {};
 
-  // Make compatible with previous API.
-  options.encoding = typeof options === 'string' ?
-    options
-  : options.encoding || 'hex';
-
   options.base = options.base || this.customBase;
   options.length = options.length || module.exports.uuidLength;
 
-  var res = ensureLength(base16.encode(new Buffer(options.base.decode(b62Str)).toString(options.encoding), options.length));
+  if (typeof options.base === "string") {
+    options.base = baseX(options.base);
+  }
+
+  var res = options.base.decode(b62Str);
+
+  if (typeof res === "string") {
+    res = Buffer.from(res, 'ascii')
+  }
+
+  res = ensureLength(base16.encode(res), options.length);
 
   // re-add the dashes so the result looks like an uuid
   var resArray = res.split('');
@@ -102,7 +106,7 @@ function ensureLength(str, maxLen){
     return trimLeft(str, maxLen);
   }
   return str;
-};
+}
 
 
 /**
@@ -117,7 +121,7 @@ function padLeft(str, padding){
     pad += '0';
   }
   return pad + str;
-};
+}
 
 /**
  * trimLeft
@@ -131,4 +135,4 @@ function trimLeft(str, maxLen){
     trim++;
   }
   return str.slice(trim);
-};
+}

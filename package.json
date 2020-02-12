@@ -3,6 +3,20 @@
   "version": "1.0.1",
   "description": "Base62 non-sequential url-safe UUID generator (RFC4122)",
   "main": "uuid-base62.js",
+  "keywords": [
+    "uuid",
+    "uid",
+    "base62",
+    "unique",
+    "id",
+    "short",
+    "alphanum",
+    "generator",
+    "hex"
+  ],
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "mocha test"
   },
@@ -10,18 +24,7 @@
     "type": "git",
     "url": "git+https://github.com/Tofandel/uuid-base62.git"
   },
-  "keywords": [
-    "uuid",
-    "uid",
-    "base62",
-    "unique",
-    "id",
-    "identifier",
-    "url-friendly",
-    "generator",
-    "base64"
-  ],
-  "author": "Dario Marcelino <dario@appscot.com>",
+  "author": "Adrien Foulon",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Tofandel/uuid-base62/issues"
@@ -32,6 +35,6 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "^7.0.1"
   }
 }
