@@ -1,5 +1,5 @@
 [![npm version](https://badge.fury.io/js/%40tofandel%2Fuuid-base62.svg)](https://www.npmjs.com/package/@tofandel/uuid-base62)
-[![Build Status](https://travis-ci.com/Tofandel/uuid-base62.svg?branch=master&status=unknown)](https://travis-ci.com/tofandel/uuid-base62)
+[![Build](https://github.com/Tofandel/uuid-base62/actions/workflows/test.yml/badge.svg)](https://github.com/Tofandel/uuid-base62/actions)
 [![Dependency Status](https://david-dm.org/tofandel/uuid-base62.svg)](https://david-dm.org/tofandel/uuid-base62)
 
 # uuid-base62
