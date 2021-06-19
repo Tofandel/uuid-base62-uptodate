@@ -1,17 +1,14 @@
 var assert = require('assert');
 var uuidBase62 = require('../uuid-base62');
 
-if (typeof btoa === 'undefined') {
-    global.btoa = function (str) {
-        return new Buffer(str, 'binary').toString('base64');
-    };
-}
+const btoa = function (str) {
+    return Buffer.from(str, 'binary').toString('base64');
+};
 
-if (typeof atob === 'undefined') {
-    global.atob = function (b64Encoded) {
-        return new Buffer(b64Encoded, 'base64').toString('binary');
-    };
-}
+
+const atob = function (b64Encoded) {
+    return Buffer.from(b64Encoded, 'base64').toString('binary');
+};
 
 describe('uuid-base62', function () {
     describe('v4', function () {
@@ -41,7 +38,7 @@ describe('uuid-base62', function () {
 
         it('should generate same encoded uuid from different formats', function () {
             var uuid = 'de305d54-75b4-431b-adb2-eb6b9e546014';
-            var uuidB = new Buffer([0xde, 0x30, 0x5d, 0x54, 0x75, 0xb4, 0x43, 0x1b, 0xad, 0xb2, 0xeb, 0x6b, 0x9e, 0x54, 0x60, 0x14]);
+            var uuidB = Buffer.from([0xde, 0x30, 0x5d, 0x54, 0x75, 0xb4, 0x43, 0x1b, 0xad, 0xb2, 0xeb, 0x6b, 0x9e, 0x54, 0x60, 0x14]);
 
             var res = uuidBase62.encode(uuid);
             var resB = uuidBase62.encode(uuidB);
