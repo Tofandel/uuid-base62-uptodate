@@ -1,6 +1,6 @@
 {
   "name": "@tofandel/uuid-base62",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Base62 UUID encoder/decoder/generator (RFC4122 compliant)",
   "main": "uuid-base62.js",
   "keywords": [
@@ -32,7 +32,7 @@
   "homepage": "https://github.com/Tofandel/uuid-base62#readme",
   "dependencies": {
     "base-x": "^3.0.7",
-    "uuid": "^3.4.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "mocha": "^7.0.1"

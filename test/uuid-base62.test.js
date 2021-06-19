@@ -18,8 +18,8 @@ describe('uuid-base62', function () {
         it('should generate a unique id without any params', function () {
             var res = uuidBase62.v4();
             assert(res);
-            assert.equal(typeof res, 'string');
-            assert.equal(res.length, 22);
+            assert.equal('string', typeof res);
+            assert.equal(22, res.length);
         });
 
         it('should convert id back to uuid format', function () {
